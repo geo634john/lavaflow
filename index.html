@@ -25,7 +25,8 @@
         "esri/widgets/Legend",
         "esri/widgets/Home",
         "esri/widgets/Slider",
-        "esri/widgets/Fullscreen"
+        "esri/widgets/Fullscreen",
+        "esri/widgets/ScaleBar"
       ], (
         Map,
         FeatureLayer,
@@ -34,7 +35,8 @@
         Legend,
         Home,
         Slider,
-        Fullscreen
+        Fullscreen,
+        ScaleBar
       ) => {
         //--------------------------------------------------------------------------
         //
@@ -61,28 +63,29 @@
           definitionExpression: "ValHour >= 0",
           //title: "Building Footprints",
           title: "溶岩流",
-          minScale: 72223.819286,
-          effect: "bloom(2.5 0 0.5)"
+          minScale: 144447.638572,
+          effect: "bloom(2.5 0 0.5)",
+          opacity:0.9
         });
+
         const map = new Map({
           basemap: {
             portalItem: {
               id: "c876a8e4c26b4909b897afde5e81dddf"
             }
           },
-          layers: [layer]
+          layers: [layer]     
         });
 
         const view = new MapView({
           map: map,
           container: "viewDiv",
-          center: [138.79431122664946,35.483656031249474],
-          zoom: 12,
+          center: [138.75150501524126,35.46797159089955],
+          zoom: 13,
           constraints: {
             snapToZoom: false,
-            minScale: 72223.819286
+            minScale: 144447.638572
           },
-          viewpoint.rotation = 90;
           // This ensures that when going fullscreen
           // The top left corner of the view extent
           // stays aligned with the top left corner
@@ -90,9 +93,20 @@
           // これはフルスクリーンにした際に
           // ビューの範囲の左上隅は、ビューのコンテナの左上隅と整列した状態にすることを
           // 確実にします
-          resizeAlign: "top-left"
-        });
+          resizeAlign: "top-left",
+        },
+        );
+        view.rotation = 150;
 
+        let scaleBar = new ScaleBar({
+          view: view,
+          unit:"metric"
+        });
+        // Add widget to the bottom left corner of the view
+        view.ui.add(scaleBar, {
+          position: "bottom-right",
+        });
+        
         //--------------------------------------------------------------------------
         //
         //  Setup UI
@@ -181,7 +195,7 @@
 
         // Starts the application by visualizing year 1984
         // 1984年を可視化してアプリケーションを起動します
-        setYear(0);
+        setYear(-1);
 
         //--------------------------------------------------------------------------
         //
@@ -248,18 +262,20 @@
                 stops: [
                   {
                     value: year,
-                    color: "#0ff",
+                    //color: "#0ff",
+                    color: "#faa",
                     label: "現在"
                   },
                   {
-                    value: year - 10,
-                    color: "#f0f",
-                    label: "10時間前"
+                    value: year - 15,
+                    color: "#d22",
+                    //color: "#f0f",
+                    label: "15時間前"
                   },
                   {
-                    value: year - 20,
-                    color: "#404",
-                    label: "20時間以上前"
+                    value: year - 30,
+                    color: "#522",
+                    label: "30時間以上前"
                   }
                 ]
               }
