@@ -26,7 +26,8 @@
         "esri/widgets/Home",
         "esri/widgets/Slider",
         "esri/widgets/Fullscreen",
-        "esri/widgets/ScaleBar"
+        "esri/widgets/ScaleBar",
+        "esri/widgets/Search"
       ], (
         Map,
         FeatureLayer,
@@ -36,7 +37,8 @@
         Home,
         Slider,
         Fullscreen,
-        ScaleBar
+        ScaleBar,
+        Search
       ) => {
         //--------------------------------------------------------------------------
         //
@@ -106,6 +108,8 @@
         view.ui.add(scaleBar, {
           position: "bottom-right",
         });
+
+
         
         //--------------------------------------------------------------------------
         //
@@ -188,6 +192,16 @@
           }),
           "top-right"
         );
+
+        const searchWidget = new Search({
+          view: view
+        });
+// Adds the search widget below other elements in
+// the top left corner of the view
+        view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 2
+        });
 
         // When the layerview is available, setup hovering interactivity
         // layerview が利用可能になったときに、ホバー操作で対話的な機能を設定
