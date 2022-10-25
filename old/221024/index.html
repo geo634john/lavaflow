@@ -27,8 +27,7 @@
         "esri/widgets/Slider",
         "esri/widgets/Fullscreen",
         "esri/widgets/ScaleBar",
-        "esri/widgets/Search",
-        "esri/widgets/LayerList"
+        "esri/widgets/Search"
       ], (
         Map,
         FeatureLayer,
@@ -39,8 +38,7 @@
         Slider,
         Fullscreen,
         ScaleBar,
-        Search,
-        LayerList
+        Search
       ) => {
         //--------------------------------------------------------------------------
         //
@@ -64,114 +62,31 @@
           portalItem: {
             id: "094eb1d58c904cf7badec82890f4150d"
           },
-          definitionExpression: "ValHour < 0",
+          definitionExpression: "ValHour >= 0",
           //title: "Building Footprints",
           title: "溶岩流",
           minScale: 144447.638572,
           effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:true,
-          listMode:"hide"
-        });
-
-        const layerL20 = new FeatureLayer({
-          portalItem: {
-            id: "7b181a1e9e1841678dd5a8fc78a67e24"
-          },
-          definitionExpression: "Time_10 >= 0",
-          //title: "Building Footprints",
-          title: "溶岩流L20",
-          minScale: 144447.638572,
-          effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:false
-        });
-
-        const layerL22 = new FeatureLayer({
-          portalItem: {
-            id: "f1e8716eb6fa419eb3e9a1b0b0d7b766"
-          },
-          definitionExpression: "Time_10 >= 0",
-          //title: "Building Footprints",
-          title: "溶岩流L22",
-          minScale: 144447.638572,
-          effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:false
-        });
-
-        const layerL26 = new FeatureLayer({
-          portalItem: {
-            id: "1d5778c654194f0e87a8e187c823ad59"
-          },
-          definitionExpression: "Time_10 >= 0",
-          //title: "Building Footprints",
-          title: "溶岩流L26",
-          minScale: 144447.638572,
-          effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:false
-        });
-
-        const layerS26 = new FeatureLayer({
-          portalItem: {
-            id: "fc2505898d2b4de0beb00a225b723754"
-          },
-          definitionExpression: "Time_10 >= 0",
-          //title: "Building Footprints",
-          title: "溶岩流S26",
-          minScale: 144447.638572,
-          effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:false
-        });
-
-        const layerFYJ = new FeatureLayer({
-          portalItem: {
-            id: "ba1d01750f344354b9b8d7a61b2f84a0"
-          },
-          definitionExpression: "Time_10 >= 0",
-          //title: "Building Footprints",
-          title: "溶岩流S26",
-          minScale: 144447.638572,
-          //effect: "bloom(2.5 0 0.5)",
-          opacity:0,
-          legendEnabled:false,
-          listMode:"hide"
-        });
-
-
-
-        const layerFY = new FeatureLayer({
-          portalItem: {
-            id: "686cf027a8cd4ce581c0d40d8c0f6796"
-          },
-          definitionExpression: "N03_007 = '19202'",
-          //title: "Building Footprints",
-          title: "行政区域",
-          effect: "bloom(2.5 0 0.1)",
-          minScale: 144447.638572,
           opacity:0.9
         });
-        
+
         const map = new Map({
           basemap: {
             portalItem: {
-              id: "ba66b7253c3e4a898e1029327dc93f36"  
+              id: "c876a8e4c26b4909b897afde5e81dddf"
             }
           },
-          layers: [layerFY,layer,layerL20,layerL22,layerL26,layerS26,layerFYJ]     
+          layers: [layer]     
         });
-        
+
         const view = new MapView({
           map: map,
           container: "viewDiv",
-          center: [138.8042180, 35.4394722 ],
+          center: [138.75150501524126,35.46797159089955],
           zoom: 13,
           constraints: {
             snapToZoom: false,
-            minScale: 144447.638572,
-            maxScale: 4513.988705
+            minScale: 144447.638572
           },
           // This ensures that when going fullscreen
           // The top left corner of the view extent
@@ -191,19 +106,8 @@
         });
         // Add widget to the bottom left corner of the view
         view.ui.add(scaleBar, {
-          position: "bottom-right"
+          position: "bottom-right",
         });
-
-        let click1;
-        view.on("click", function (event) {
-          clearMap();
-          queryFeatures(event);
-        });
-
-        let layerList = new LayerList({
-          view: view
-        });
-
 
 
         
@@ -235,12 +139,12 @@
         const slider = new Slider({
           container: "slider",
           min: 0,
-          max: 288, //2017,
+          max: 61, //2017,
           values: [0],
           step: 1,
           visibleElements: {
-            rangeLabels: false
-          },
+            rangeLabels: true
+          }
         });
 
         // When user drags the slider:
@@ -269,14 +173,12 @@
 
         view.ui.empty("top-left");
         view.ui.add(titleDiv, "top-left");
-        
         view.ui.add(
           new Home({
             view: view
           }),
           "top-left"
         );
-        view.ui.add(attachmentsDiv, "top-left");
         view.ui.add(
           new Legend({
             view: view
@@ -301,18 +203,13 @@
           index: 2
         });
 
-        view.ui.add(layerList, {
-          position: "bottom-right"   
-        });
-
         // When the layerview is available, setup hovering interactivity
         // layerview が利用可能になったときに、ホバー操作で対話的な機能を設定
-        //view.whenLayerView(layer).then(setupHoverTooltip);
+        view.whenLayerView(layer).then(setupHoverTooltip);
 
         // Starts the application by visualizing year 1984
         // 1984年を可視化してアプリケーションを起動します
-        setYear(0);
-
+        setYear(-1);
 
         //--------------------------------------------------------------------------
         //
@@ -326,14 +223,9 @@
          * 現在、可視化されている建築年を設定します
          */
         function setYear(value) {
-          sliderValue.innerHTML = Math.floor(value*10/60) + ":" + String(Math.floor((value*10)%60/10)*10).padStart(2,"0") + " 経過" ;
+          sliderValue.innerHTML = Math.floor(value);
           slider.viewModel.setValue(0, value);
           layer.renderer = createRenderer(value);
-          layerL20.renderer = createRenderer2(value);
-          layerL22.renderer = createRenderer2(value);
-          layerL26.renderer = createRenderer2(value);
-          layerS26.renderer = createRenderer2(value);
-          layerFYJ.renderer = createRenderer2(value);
         }
 
         /**
@@ -389,73 +281,15 @@
                     label: "現在"
                   },
                   {
-                    value: year - 5,
+                    value: year - 15,
                     color: "#d22",
                     //color: "#f0f",
-                    label: "5時間前"
-                  },
-                  {
-                    value: year - 10,
-                    color: "#522",
-                    label: "10時間以上前"
-                  }
-                ]
-              }
-            ]
-          };
-        }
-
-        function createRenderer2(year) {
-          const opacityStops = [
-            {
-              opacity: 1,
-              value: year
-            },
-            {
-              opacity: 0,
-              value: year + 1
-            }
-          ];
-
-          return {
-            type: "simple",
-            symbol: {
-              type: "simple-fill",
-              color: "rgb(0, 0, 0)",
-              outline: null
-            },
-            visualVariables: [
-              {
-                type: "opacity",
-                field: "Time_10",
-                stops: opacityStops,
-                legendOptions: {
-                  showLegend: false
-                }
-              },
-              {
-                type: "color",
-                field: "Time_10",
-                legendOptions: {
-                  title: "経過時間:"
-                },
-                stops: [
-                  {
-                    value: year,
-                    //color: "#0ff",
-                    color: "#faa",
-                    label: "現在"
+                    label: "15時間前"
                   },
                   {
                     value: year - 30,
-                    color: "#d22",
-                    //color: "#f0f",
-                    label: "5時間前"
-                  },
-                  {
-                    value: year - 60,
                     color: "#522",
-                    label: "10時間以上前"
+                    label: "30時間以上前"
                   }
                 ]
               }
@@ -512,7 +346,7 @@
                   tooltip.show(
                     screenPoint,
                     //"Built in " + graphic.getAttribute("ValHour")
-                    "噴火から " + graphic.getAttribute("ValHour")+"後"
+                    "噴火から " + graphic.getAttribute("ValHour")　+"後"
                   );
                 } else {
                   tooltip.hide();
@@ -521,7 +355,6 @@
               () => {}
             );
           });
-
         }
 
         /**
@@ -562,8 +395,8 @@
               return;
             }
 
-            value += 1;
-            if (value > 289) {
+            value += 0.5;
+            if (value > 62) {
               value = 0;
             }
 
@@ -647,75 +480,7 @@
             }
           };
         }
-
-        function queryFeatures(screenPoint) {
-          const point = view.toMap(screenPoint);
-
-          // Query the for the object ids within 800m from where the user clicked
-          layerFYJ
-            .queryObjectIds({
-              geometry: point,
-              spatialRelationship: "intersects",
-              distance: 10,
-              units: "meters",
-              returnGeometry: false,
-              outFields: ["*"]
-            })
-            .then(function (objectIds){              
-              // Highlight the query-area on the map
-              view.whenLayerView(layerFYJ).then(function (layerView) {
-                // if (click1) {
-                //   click1.remove();
-                // }
-                click1 = layerView.click1(objectIds);
-                click1.geometry = point;
-                view.graphics.add(click1);
-              });
-              // Query the for the attachments from the object ids found
-              return layerFYJ.queryFeatures({
-                objectIds: objectIds
-              });
-            })
-            .then(function (objectId) {
-              const ID = objectId[objectId];
-              const infoP = document.createElement("p");
-              infoP.innerHTML = "<b>通過範囲</b>"
-              document.getElementById("queryResults").appendChild(infoP);
-            })
-            .catch(function (error) {
-            showMessage();
-          });
-
-        }
-        
-        function showMessage() {
-          clearMap();
-          const infoP = document.createElement("p");
-          infoP.innerHTML =
-            "<b>通過しない範囲</b>";
-          document.getElementById("queryResults").appendChild(infoP);
-        }
-
-        function showMessage2() {
-          clearMap();
-          const infoP = document.createElement("p");
-          infoP.innerHTML =
-            "<b>test</b>";
-          document.getElementById("queryResults").appendChild(infoP);
-        }
-
-        // Clear attachments from div
-        function clearMap() {
-          const att = document.getElementById("queryResults");
-          while (att.firstChild) {
-            att.removeChild(att.firstChild);
-          }
-        }
-
       });
-
-
-
     </script>
 
     <style>
@@ -761,7 +526,7 @@
         }
 
         #sliderValue {
-          flex: 0 0 200px;
+          flex: 0 0 100px;
           order: 1;
 
           display: flex;
@@ -769,7 +534,7 @@
           flex-direction: column;
           text-align: center;
 
-          font-size: 250%;
+          font-size: 300%;
         }
 
         #sliderInnerContainer {
@@ -836,30 +601,15 @@
           box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.75);
           transform: translate3d(-50%, -125%, 0);
         }
-
-        #attachmentsDiv {
-          width: 350px;
-          /* height: 100%; */
-          /* font-weight: 200;
-          font-style: normal;
-          font-size: 1.2019rem;:*/
-          padding: 10px;
-        }
-
     </style>
   </head>
+
   <body>
     <div id="applicationDiv">
       <div id="viewDiv">
         <!--<div id="titleDiv" class="esri-widget">New York Construction</div>-->
-        <div id="titleDiv" class="esri-widget">溶岩流アニメーションサンプル(富士吉田市)</div>
+        <div id="titleDiv" class="esri-widget">溶岩流アニメーションサンプル</div>
       </div>
-      <div id="attachmentsDiv" class="esri-widget">
-        <h2>クエリ結果</h2>
-        <div id="queryResults"></div>
-    </div>
-
-
       <div id="sliderContainer" class="esri-widget">
         <span id="sliderValue"></span>
         <div id="sliderInnerContainer">
