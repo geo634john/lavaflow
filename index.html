@@ -669,9 +669,9 @@
                     label: "現在"
                   },
                   {
-                    value: frame - 30,
+                    value: frame - 12,
                     color: "#d22",
-                    label: "5時間前"
+                    label: "2時間前"
                   },
                   {
                     value: frame - 60,
@@ -727,11 +727,11 @@
 
             setFrame(value);
 
-            // Update at 15fps
-            // 15fps(Frame per second) で更新します
+            // Update at 5fps
+            // 5fps(Frame per second) で更新します
             setTimeout(() => {
               requestAnimationFrame(frame);
-            }, 1000 / 15);
+            }, 1000 / 5);
           };
 
           frame();
