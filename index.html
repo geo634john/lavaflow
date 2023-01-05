@@ -54,9 +54,9 @@
         //凡例用に読み込むレイヤー
         const layer = new FeatureLayer({
           portalItem: {
-            id: "d35acdd41f244021ad821240d0ff266b"
+            id: "6c379beedbcc49949ace314b95a2eeb5"
           },
-          definitionExpression: "ValHour < 0",
+          definitionExpression: "Time_10 < 0",
           title: "溶岩流",
           minScale: 144447.638572,
           effect: "bloom(2.5 0 0.5)",
@@ -68,7 +68,7 @@
         //単独シナリオ
         const layerL16 = new FeatureLayer({
           portalItem: {
-            id: "0351eb977f4243dab4be8909e3fea1ab"
+            id: "a36f8fb7920b4fca865511df8bfeaf01"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L16 大規模",
@@ -81,7 +81,7 @@
 
         const layerS26 = new FeatureLayer({
           portalItem: {
-            id: "5739da32648549cd876c87e0469a5c7c"
+            id: "f07c7b24fae443d59aed937b53154d6e"
           },
           definitionExpression: "Time_10 >= 0",
           title: "S26 小規模",
@@ -92,21 +92,9 @@
           visible:false
         });
 
-        const layerL26 = new FeatureLayer({
-          portalItem: {
-            id: "1d5778c654194f0e87a8e187c823ad59"
-          },
-          definitionExpression: "Time_10 >= 0",
-          title: "溶岩流L26",
-          minScale: 144447.638572,
-          effect: "bloom(2.5 0 0.5)",
-          opacity:0.9,
-          legendEnabled:false
-        });
-
         const layerL3 = new FeatureLayer({
           portalItem: {
-            id: "d35acdd41f244021ad821240d0ff266b"
+            id: "6c379beedbcc49949ace314b95a2eeb5"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L3 大規模",
@@ -119,7 +107,7 @@
 
         const layerM18 = new FeatureLayer({
           portalItem: {
-            id: "1812651dafcc42038cadb071f2b452a2"
+            id: "bb5a9595098c4bd3ae0db68f3fe9ccbd"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M18 中規模",
@@ -132,7 +120,7 @@
 
         const layerM30 = new FeatureLayer({
           portalItem: {
-            id: "9be13a98368348399ad7b454ffeff765"
+            id: "ce7013068afc4af09b3f3dd1314a9224"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M30 中規模",
@@ -146,7 +134,7 @@
         //連動シナリオ
         const layerM11_1 = new FeatureLayer({
           portalItem: {
-            id: "1f3750b813104bdab7151de36fa8454b"
+            id: "be24a35142c14b7cbb3076558dbad36e"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M11 中規模",
@@ -158,7 +146,7 @@
 
         const layerM11_2 = new FeatureLayer({
           portalItem: {
-            id: "1f3750b813104bdab7151de36fa8454b"
+            id: "be24a35142c14b7cbb3076558dbad36e"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M11 中規模",
@@ -170,7 +158,7 @@
 
         const layerM13_1 = new FeatureLayer({
           portalItem: {
-            id: "77c2393db36a42768e9bc8835e1ada52"
+            id: "e8b375df5d434d10b92383f7c717c855"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M13 中規模",
@@ -182,7 +170,7 @@
 
         const layerM13_2 = new FeatureLayer({
           portalItem: {
-            id: "77c2393db36a42768e9bc8835e1ada52"
+            id: "e8b375df5d434d10b92383f7c717c855"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M13 中規模",
@@ -194,7 +182,7 @@
 
         const layerL16_1 = new FeatureLayer({
           portalItem: {
-            id: "0351eb977f4243dab4be8909e3fea1ab"
+            id: "a36f8fb7920b4fca865511df8bfeaf01"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L16 大規模",
@@ -206,7 +194,7 @@
 
         const layerL16_2 = new FeatureLayer({
           portalItem: {
-            id: "0351eb977f4243dab4be8909e3fea1ab"
+            id: "a36f8fb7920b4fca865511df8bfeaf01"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L16 大規模",
@@ -218,7 +206,7 @@
 
         const layerM31_1 = new FeatureLayer({
           portalItem: {
-            id: "b47717ecac6d4d67bc554829efef6162"
+            id: "b4582e2955ba4bc897b7cd6f0d791e7a"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M31 中規模",
@@ -230,7 +218,7 @@
 
         const layerM31_2 = new FeatureLayer({
           portalItem: {
-            id: "b47717ecac6d4d67bc554829efef6162"
+            id: "b4582e2955ba4bc897b7cd6f0d791e7a"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M31 中規模",
@@ -242,7 +230,7 @@
 
         const layerL29_1 = new FeatureLayer({
           portalItem: {
-            id: "18b0b7300e07405481c37e217670f703"
+            id: "9d4827d6c0834e449662c7550f2db00d"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L29 大規模",
@@ -254,7 +242,7 @@
 
         const layerL29_2 = new FeatureLayer({
           portalItem: {
-            id: "18b0b7300e07405481c37e217670f703"
+            id: "9d4827d6c0834e449662c7550f2db00d"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L29 大規模",
@@ -266,7 +254,7 @@
 
         const layerL52_1 = new FeatureLayer({
           portalItem: {
-            id: "e2a4158178334ff7b1e70c777805bceb"
+            id: "0cc432247dc54f30a5e3c203599695db"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L52 大規模",
@@ -278,7 +266,7 @@
 
         const layerL52_2 = new FeatureLayer({
           portalItem: {
-            id: "e2a4158178334ff7b1e70c777805bceb"
+            id: "0cc432247dc54f30a5e3c203599695db"
           },
           definitionExpression: "Time_10 >= 0",
           title: "L52 大規模",
@@ -290,7 +278,7 @@
 
         const layerM53_1 = new FeatureLayer({
           portalItem: {
-            id: "814013a7630343cd95210d8b51d7e1f8"
+            id: "b2866a571ee44be4a292df0b90dd9b9e"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M53 中規模",
@@ -302,7 +290,7 @@
 
         const layerM53_2 = new FeatureLayer({
           portalItem: {
-            id: "814013a7630343cd95210d8b51d7e1f8"
+            id: "b2866a571ee44be4a292df0b90dd9b9e"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M53 中規模",
@@ -314,7 +302,7 @@
 
         const layerM52_1 = new FeatureLayer({
           portalItem: {
-            id: "f176c71f9cac40eb8e1d43983e4a2a17"
+            id: "b2db66f5afe644ac9b04915fafee1aef"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M52 中規模",
@@ -326,7 +314,7 @@
 
         const layerM52_2 = new FeatureLayer({
           portalItem: {
-            id: "f176c71f9cac40eb8e1d43983e4a2a17"
+            id: "b2db66f5afe644ac9b04915fafee1aef"
           },
           definitionExpression: "Time_10 >= 0",
           title: "M52 中規模",
@@ -338,7 +326,7 @@
 
         const layerS53_1 = new FeatureLayer({
           portalItem: {
-            id: "fcc2908c8f85467fa1ef9e75b5ada50f"
+            id: "b2029868aaa44cddb27a1ce62528154b"
           },
           definitionExpression: "Time_10 >= 0",
           title: "S53 大規模",
@@ -350,7 +338,7 @@
 
         const layerS53_2 = new FeatureLayer({
           portalItem: {
-            id: "fcc2908c8f85467fa1ef9e75b5ada50f"
+            id: "b2029868aaa44cddb27a1ce62528154b"
           },
           definitionExpression: "Time_10 >= 0",
           title: "S53 大規模",
@@ -362,7 +350,7 @@
 
         const layerArea = new FeatureLayer({
           portalItem: {
-            id: "b75affc0dcad4fe6bb74e5aed3291c86"
+            id: "44ab762ea5fb427b8f8b5af4d79e84da"
           },
           //definitionExpression: "N03_007 = '19202' or N03_007 = '19201'",
           title: "行政区域",
